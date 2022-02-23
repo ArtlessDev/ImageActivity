@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val textView = findViewById<TextView>(R.id.textView)
+
         val imageView = findViewById<ImageView>(R.id.imageView)
 
         val logos = arrayOf(
@@ -37,14 +37,9 @@ class MainActivity : AppCompatActivity() {
             ImageObject("vitality", R.drawable.vitality),
             )
 
-
-        val recyclerViewFunc = {imageObject:ImageObject ->
-            imageView.setImageResource(imageObject.hashCode())
+        recyclerView.apply {
+            layoutManager = GridLayoutManager(this@MainActivity, 3)
+            adapter = ImageAdapter(logos)
         }
-
-        recyclerView.layoutManager = GridLayoutManager(this, 3)
-
-        recyclerView.adapter = ImageAdapter(logos, recyclerViewFunc)
-
     }
 }

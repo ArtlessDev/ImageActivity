@@ -5,39 +5,37 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.recyclerview.widget.RecyclerView
 
-class ImageAdapter(_logos: Array<ImageObject>, _recyclerViewFunc: (ImageObject) -> Unit) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
+class ImageAdapter(_logos: Array<ImageObject>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     val logos = _logos
-    val recyclerViewFunc = _recyclerViewFunc
+    //val recyclerViewFunc = _recyclerViewFunc
 
     inner class ImageViewHolder(_view: View) : RecyclerView.ViewHolder(_view) {
-
         val imageNameTextView = _view.findViewById<TextView>(R.id.textView)
-        val imageDisplayView = _view.findViewById<ImageView>(R.id.imageView)
-
-        lateinit var imageObject: RecyclerView.ViewHolder
+        var imageDisplayView = _view.findViewById<ImageView>(R.id.photoOfMyLogo)
+    /*
+        lateinit var imageObject: ImageObject
         init {
-            _view.setOnClickListener{recyclerViewFunc(logos[0])}
-        }
+            _view.setOnClickListener{recyclerViewFunc(imageObject)}
+        }*/
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder{
         val layout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.activity_main, parent, false)
+            .inflate(R.layout.recycler_view_layout, parent, false)
         return ImageViewHolder(layout)
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+        val logo = logos[position]
         holder.imageNameTextView.text = logos[position].name
-        holder.imageDisplayView.setImageResource(logos[position].code)
-
-        holder.imageObject = RecyclerView.ViewHolder
+        holder.imageDisplayView.setImageDrawable(holder.imageDisplayView.context.getDrawable(logo.photo))
     }
 
     override fun getItemCount(): Int {
         return logos.size
     }
-
 }

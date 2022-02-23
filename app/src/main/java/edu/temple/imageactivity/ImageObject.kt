@@ -1,3 +1,6 @@
 package edu.temple.imageactivity
 
-data class ImageObject(val name: String, val code: Int)
+data class ImageObject(
+    val name: String,
+    val photo: Int
+    )
