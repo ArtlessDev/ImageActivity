@@ -37,9 +37,13 @@ class MainActivity : AppCompatActivity() {
             ImageObject("vitality", R.drawable.vitality),
             )
 
+        val myRecyclerViewFunc = {imageObject:ImageObject ->
+            imageView.setImageResource(imageObject.photo)
+        }
+
         recyclerView.apply {
             layoutManager = GridLayoutManager(this@MainActivity, 3)
-            adapter = ImageAdapter(logos)
+            adapter = ImageAdapter(logos, myRecyclerViewFunc)
         }
     }
 }

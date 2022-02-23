@@ -8,19 +8,19 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.recyclerview.widget.RecyclerView
 
-class ImageAdapter(_logos: Array<ImageObject>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
+class ImageAdapter(_logos: Array<ImageObject>, _recyclerFunc : (ImageObject) ->Unit) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     val logos = _logos
-    //val recyclerViewFunc = _recyclerViewFunc
+    val recyclerViewFunc = _recyclerFunc
 
     inner class ImageViewHolder(_view: View) : RecyclerView.ViewHolder(_view) {
         val imageNameTextView = _view.findViewById<TextView>(R.id.textView)
         var imageDisplayView = _view.findViewById<ImageView>(R.id.photoOfMyLogo)
-    /*
+
         lateinit var imageObject: ImageObject
         init {
             _view.setOnClickListener{recyclerViewFunc(imageObject)}
-        }*/
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder{
